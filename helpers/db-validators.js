@@ -4,7 +4,7 @@ const User = require("../models/User");
 const isValidRole = async (role = "") => {
   const isValidRole = await Role.findOne({ role });
   if (!isValidRole) {
-    throw new Error(`El rol ${role} no está registrado en la BD`);
+    throw new Error(`The role ${role} is not registered in the database`);
   }
 };
 
@@ -12,7 +12,7 @@ const emailExists = async (email = "") => {
   // Verificar si el correo existe
   const emailExists = await User.findOne({ email });
   if (emailExists) {
-    throw new Error(`El correo: ${email}, ya está registrado`);
+    throw new Error(`The email: ${email}, is already registered`);
   }
 };
 
@@ -20,7 +20,7 @@ const existsUserById = async (id) => {
   // Verificar si el correo existe
   const existsUserById = await User.findById(id);
   if (!existsUserById) {
-    throw new Error(`El id no existe ${id}`);
+    throw new Error(`The ${id} id does not exist `);
   }
 };
 

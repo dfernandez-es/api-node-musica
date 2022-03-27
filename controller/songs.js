@@ -1,6 +1,6 @@
 const Song = require("../models/Song");
 
-exports.getAllSongs = async (req, res) => {
+const getAllSongs = async (req, res) => {
   try {
     const songs = await Song.find();
     res.json(songs);
@@ -9,12 +9,14 @@ exports.getAllSongs = async (req, res) => {
   }
 };
 
-exports.saveSong = async (req, res) => {
+const saveSong = async (req, res) => {
   try {
+    const { title, band, path, img = "" } = req.body;
     const song = new Song({
-      title: "master of puppets",
-      band: "metallica",
-      path: "../",
+      title,
+      band,
+      path,
+      img,
     });
     await song.save();
     res.json(song.id);
@@ -22,3 +24,5 @@ exports.saveSong = async (req, res) => {
     res.send(err);
   }
 };
+
+module.exports = { getAllSongs, saveSong };
